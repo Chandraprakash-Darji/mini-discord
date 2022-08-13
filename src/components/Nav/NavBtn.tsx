@@ -1,5 +1,6 @@
-import { ReactElement, useRef } from 'react';
+import { ReactElement, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { ServerContext } from '../App';
 
 type Props = {
     icon: ReactElement | string | null;
@@ -7,10 +8,11 @@ type Props = {
     gif?: string | null;
     label: string;
     unread: boolean;
-    id: number | null | '@me';
+    id: string | '@me' | null;
 };
 
-const Btn = ({ icon, label, secondary, unread, gif }: Props) => {
+const Btn = ({ icon, label, secondary, unread, gif, id }: Props) => {
+    const server = useContext(ServerContext);
     const imgref = useRef<HTMLImageElement>(null);
     // TO set the gif image to the Icon
     const handleMouseOver = () => {
@@ -31,7 +33,9 @@ const Btn = ({ icon, label, secondary, unread, gif }: Props) => {
                         ? 'hover:bg-green-700 text-green-600 hover:text-white bg-white/10'
                         : 'hover:bg-violet-800 bg-white/10'
                     : ''
-            } ${unread ? 'after:h-2' : 'after:h-0'} group`}
+            } ${unread ? 'after:h-2' : 'after:h-0'} group ${
+                server === id && 'after:h-9 hover:after:h-9'
+            }`}
         >
             {/* If icon the display Icon */}
             {typeof icon !== 'string' && icon}
@@ -54,9 +58,9 @@ const Btn = ({ icon, label, secondary, unread, gif }: Props) => {
                     onBlur={handleMouseOut}
                 />
             )}
-            <div className="absolute left-[calc(100%_+_1.2rem)] w-max bg-bgDark p-2 rounded-lg shadow-lg shadow-black/10 hidden group-hover:block font-bold text-sm after:absolute after:border-[.3rem] after:w-0 after:h-0 after:border-r-bgDark after:border-transparent after:right-full after:top-1/2 after:-translate-y-1/2 text-white z-50">
+            <div className="absolute left-[calc(100%_+_1.2rem)] w-max bg-bgDark p-2 rounded-lg shadow-lg shadow-black/10 scale-0 group-hover:scale-100 font-bold text-sm after:absolute after:border-[.3rem] after:w-0 after:h-0 after:border-r-bgDark after:border-transparent after:right-full after:top-1/2 after:-translate-y-1/2 text-white z-50 transition-all origin-left">
                 {label}
-            </div>  
+            </div>
         </div>
     );
 };
@@ -65,7 +69,7 @@ const NavBtn = (props: Props) => {
     if (props.id === null) return <Btn {...props} />;
     else
         return (
-            <Link to={`/${props.id}`}>
+            <Link to={`/${props.id}`} className="active:translate-y-[.1rem]">
                 <Btn {...props} />
             </Link>
         );
