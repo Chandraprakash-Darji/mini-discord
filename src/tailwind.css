@@ -5,7 +5,7 @@
 ::-webkit-scrollbar {
     width: 0;
 }
-#sidebar::-webkit-scrollbar {
+#sidebar .channels::-webkit-scrollbar {
     width: 0.4rem;
 }
 
