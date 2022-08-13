@@ -2,6 +2,7 @@ import { channelIn, folderServerIn } from '../../data/serverinfo';
 import CeveronDownicon from '../Icons/CeveronDownicon';
 import GearIcon from '../Icons/GearIcon';
 import HashIcon from '../Icons/HashIcon';
+import IconBtn from '../Icons/IconBtn';
 import PersonPlusIcon from '../Icons/PersonPlusIcon';
 import PlusIcon from '../Icons/plusIcon';
 import VoiceIcon from '../Icons/VoiceIcon';
@@ -30,7 +31,9 @@ const RenderChannel = ({ channels }: Props) => {
                             </span>
                             <div className="hidden group-hover:opacity-100 group-hover:flex gap-1">
                                 <PersonPlusIcon />
-                                <GearIcon />
+                                <IconBtn size={16}>
+                                    <GearIcon />
+                                </IconBtn>
                             </div>
                         </div>
                     );
@@ -48,7 +51,9 @@ const RenderChannel = ({ channels }: Props) => {
                             </span>
                             <div className="hidden group-hover:opacity-100 group-hover:flex gap-1">
                                 <PersonPlusIcon />
-                                <GearIcon />
+                                <IconBtn size={16}>
+                                    <GearIcon />
+                                </IconBtn>
                             </div>
                         </div>
                     );
@@ -59,9 +64,13 @@ const RenderChannel = ({ channels }: Props) => {
                             className="flex flex-col w-full rounded-md justify-center py-1"
                         >
                             <span className="flex p-1 text-sm items-center overflow-hidden whitespace-nowrap text-ellipsis">
-                                <CeveronDownicon size={18} />
+                                <IconBtn size={18}>
+                                    <CeveronDownicon />
+                                </IconBtn>
                                 <span className="mr-auto">{channel.label.toUpperCase()}</span>
-                                <PlusIcon />
+                                <IconBtn>
+                                    <PlusIcon />
+                                </IconBtn>
                             </span>
                             <div className="pl-2">
                                 <RenderChannel
