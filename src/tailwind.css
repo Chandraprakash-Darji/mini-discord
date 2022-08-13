@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#nav::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 0;
 }
 #sidebar::-webkit-scrollbar {
