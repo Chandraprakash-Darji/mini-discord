@@ -1,5 +1,5 @@
 export interface ServerIn {
-    id: number;
+    id: string;
     label: string;
     unread: boolean;
     type: 'server';
@@ -9,7 +9,7 @@ export interface ServerIn {
 
 export interface FolderIn {
     type: 'folder';
-    id: number;
+    id: string;
     servers: ServerIn[];
 }
 export interface serverListIn {
@@ -29,7 +29,7 @@ export const serverInfo: InfoIn = {
     },
     servers: [
         {
-            id: 1,
+            id: '1',
             label: 'Detaux',
             unread: true,
             type: 'server',
@@ -37,38 +37,35 @@ export const serverInfo: InfoIn = {
             gif: null,
         },
         {
-            id: 2,
+            id: '2',
             label: 'markitUp',
             unread: false,
-
             type: 'server',
             icon: '/server-icons/markitUp.webp',
             gif: null,
         },
         {
-            id: 3,
+            id: '3',
             label: 'Multiverse',
             unread: false,
-
             type: 'server',
             icon: '/server-icons/multiverse.webp',
             gif: '/server-icons/multiverse.gif',
         },
         {
-            id: 4,
+            id: '4',
             label: 'MLH',
             unread: true,
-
             type: 'server',
             icon: '/server-icons/mlh.webp',
             gif: null,
         },
         {
             type: 'folder',
-            id: 7,
+            id: '7',
             servers: [
                 {
-                    id: 5,
+                    id: '5',
                     label: 'freeCodeCamp',
                     unread: true,
                     type: 'server',
@@ -76,12 +73,71 @@ export const serverInfo: InfoIn = {
                     gif: null,
                 },
                 {
-                    id: 6,
+                    id: '6',
                     label: 'ZeroToMastery',
                     type: 'server',
                     unread: false,
                     icon: null,
                     gif: null,
+                },
+            ],
+        },
+    ],
+};
+
+interface channelIn {
+    type: string;
+    id: string;
+    label: string;
+    unread: boolean;
+}
+interface folderServerIn {
+    id: string;
+    type: 'text' | 'voice' | 'folder';
+    label: string;
+    channels: channelIn[];
+}
+
+export interface ServerChannelsIn {
+    id: string;
+    label: string;
+    unread: boolean;
+    channels: Array<channelIn | folderServerIn>;
+}
+
+export const freeCodeCamp: ServerChannelsIn = {
+    id: '5',
+    label: 'freeCodeCamp',
+    unread: true,
+    channels: [
+        {
+            type: 'voice',
+            id: '1',
+            label: 'Total Member: 12',
+            unread: true,
+        },
+        {
+            type: 'folder',
+            id: '2',
+            label: 'Information',
+            channels: [
+                {
+                    type: 'text',
+                    id: '1',
+                    label: 'welcome',
+                    unread: false,
+                },
+                {
+                    type: 'text',
+                    id: '1',
+                    label: 'leave',
+                    unread: true,
+                },
+                {
+                    type: 'voice',
+                    id: '1',
+                    label: 'rules',
+                    unread: false,
                 },
             ],
         },
