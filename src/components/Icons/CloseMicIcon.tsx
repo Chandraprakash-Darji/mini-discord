@@ -1,6 +1,7 @@
 const CloseMicIcon = () => {
     return (
         <svg aria-hidden="true" role="img" width="100%" height="100%" viewBox="0 0 24 24">
+            
             <path
                 d="M6.7 11H5C5 12.19 5.34 13.3 5.9 14.28L7.13 13.05C6.86 12.43 6.7 11.74 6.7 11Z"
                 fill="currentColor"
