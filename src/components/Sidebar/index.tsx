@@ -12,7 +12,6 @@ interface Props {
 const SideBar = ({ server, channel }: Props) => {
     const { allServerID } = useServerIds();
     const [serverData, setServerData] = useState<ServerChannelsIn | null>(null);
-    const [showScrollBar, setShowScrollBar] = useState(false);
 
     let isPresent = allServerID.filter((ser) => ser === server).length > 0;
     const [isLoading, setIsLoading] = useState(false);
@@ -48,11 +47,7 @@ const SideBar = ({ server, channel }: Props) => {
         return (
             <div
                 id="sidebar"
-                className={`h-screen w-60 bg-[#ffffff11] font-bold text-sm ${
-                    showScrollBar ? 'overflow-y-auto' : 'overflow-y-hidden  pr-[0.4rem]'
-                } overflow-x-hidden`}
-                onMouseOver={() => setShowScrollBar(true)}
-                onMouseOut={() => setShowScrollBar(false)}
+                className="h-screen w-60 bg-[#ffffff11] font-bold text-sm overflow-y-scroll overflow-x-hidden"
             >
                 <div className="w-full">
                     <div className="h-14 flex justify-between items-center gap-3 p-3">
@@ -65,6 +60,7 @@ const SideBar = ({ server, channel }: Props) => {
                     <div className="pt-3 p-1">
                         <RenderChannel channels={serverData.channels} />
                     </div>
+                    
                 </div>
             </div>
         );
