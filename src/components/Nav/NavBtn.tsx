@@ -7,7 +7,7 @@ type Props = {
     secondary?: boolean;
     gif?: string | null;
     label: string;
-    unread: boolean;
+    unread: false | number;
     id: string | '@me' | null;
 };
 
@@ -57,6 +57,11 @@ const Btn = ({ icon, label, secondary, unread, gif, id }: Props) => {
                     onFocus={handleMouseOver}
                     onBlur={handleMouseOut}
                 />
+            )}
+            {unread && (
+                <span className="flex text-xs justify-center items-center p-2 bg-red-600 rounded-full border-[3px] border-bgDark border-solid w-5 h-5 absolute right-0 bottom-0 font-bold ">
+                    {unread}
+                </span>
             )}
             <div className="absolute left-[calc(100%_+_1.2rem)] w-max bg-bgDark p-2 rounded-lg shadow-lg shadow-black/10 scale-0 group-hover:scale-100 font-bold text-sm after:absolute after:border-[.3rem] after:w-0 after:h-0 after:border-r-bgDark after:border-transparent after:right-full after:top-1/2 after:-translate-y-1/2 text-white z-50 transition-all origin-left">
                 {label}
