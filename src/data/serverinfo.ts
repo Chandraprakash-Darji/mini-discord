@@ -263,4 +263,5 @@ export const freeCodeCamp: ServerChannelsIn = {
 
 export interface SvgProps {
     size?: number;
+    children: React.ReactNode;
 }
