@@ -5,8 +5,7 @@ import CeveronDownicon from '../Icons/CeveronDownicon';
 import IconBtn from '../Icons/IconBtn';
 import RenderChannel from './RenderChannel';
 import Skelaton from './Skelaton';
-import UserProfile from './userProfile';
-
+import UserProfile from './UserProfile';
 interface Props {
     server: string;
     channel: string;
