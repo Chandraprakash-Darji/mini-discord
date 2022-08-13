@@ -10,7 +10,7 @@ function App() {
 
     return (
         <ServerContext.Provider value={server}>
-            <div className="min-h-screen bg-bgDark text-text flex">
+            <div className="h-screen bg-bgDark text-text flex overflow-y-hidden">
                 <Nav />
                 <SideBar server={server} channel={channel} />
                 <div className="flex-1 bg-white/10"></div>
