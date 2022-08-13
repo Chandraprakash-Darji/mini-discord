@@ -1,5 +1,7 @@
 import { channelIn, folderServerIn } from '../../data/serverinfo';
+import HashLockIcon from '../Icons/HashLOckIcon';
 import PlusIcon from '../Icons/plusIcon';
+import VoiceIcon from '../Icons/VoiceIcon';
 
 interface Props {
     channels: Array<channelIn | folderServerIn>;
@@ -15,7 +17,9 @@ const RenderChannel = ({ channels }: Props) => {
                             className={`flex gap-2 w-full p-[5px] px-2 hover:bg-white/5 rounded-md items-center hover:text-text group `}
                             key={channel.id}
                         >
-                            <span className="text-xl">#</span>
+                            <span className="text-xl">
+                                <HashLockIcon />
+                            </span>
                             <span className="mr-auto overflow-hidden whitespace-nowrap text-ellipsis">
                                 {channel.label}
                             </span>
@@ -31,7 +35,9 @@ const RenderChannel = ({ channels }: Props) => {
                             className={`flex gap-2 w-full p-[5px] px-2 hover:bg-white/5 rounded-md items-center hover:text-text group`}
                             key={channel.id}
                         >
-                            <span className="text-xl">#</span>
+                            <span className="text-xl">
+                                <VoiceIcon />
+                            </span>
                             <span className="mr-auto overflow-hidden whitespace-nowrap text-ellipsis">
                                 {channel.label}
                             </span>
@@ -53,7 +59,13 @@ const RenderChannel = ({ channels }: Props) => {
                                 <PlusIcon />
                             </span>
                             <div className="pl-2">
-                                <RenderChannel channels={channel.channels} />
+                                <RenderChannel
+                                    channels={channel.channels.sort((prev, now) => {
+                                        if (prev.type === 'text') return -1;
+                                        if (prev.type === 'voice') return 1;
+                                        return 0;
+                                    })}
+                                />
                             </div>
                         </div>
                     );
