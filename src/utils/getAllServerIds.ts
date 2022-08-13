@@ -1,13 +1,17 @@
-import { serverListIn } from '../data/serverinfo';
+import { serverInfo, serverListIn } from '../data/serverinfo';
 
-export const getAllServerIds = ({ servers }: serverListIn): number[] => {
-    let lst: number[] = [];
+export const useServerIds = () => {
+    const getAllServerIds = ({ servers }: serverListIn): string[] => {
+        let lst: string[] = [];
 
-    servers.forEach((server) => {
-        if (server.type === 'folder')
-            lst = [...lst, ...getAllServerIds({ servers: server.servers })];
-        else lst.push(server.id);
-    });
+        servers.forEach((server) => {
+            if (server.type === 'folder')
+                lst = [...lst, ...getAllServerIds({ servers: server.servers })];
+            else lst.push(server.id);
+        });
 
-    return lst;
+        return lst;
+    };
+    const allServerID = [...getAllServerIds(serverInfo), '@me'];
+    return { allServerID };
 };
