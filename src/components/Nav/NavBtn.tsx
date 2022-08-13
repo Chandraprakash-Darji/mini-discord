@@ -1,6 +1,7 @@
 import { ReactElement, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ServerContext } from '../App';
+import IconBtn from '../Icons/IconBtn';
 
 type Props = {
     icon: ReactElement | string | null;
@@ -38,11 +39,14 @@ const Btn = ({ icon, label, secondary, unread, gif, id }: Props) => {
             }`}
         >
             {/* If icon the display Icon */}
-            {typeof icon !== 'string' && icon}
+            {icon && typeof icon !== 'string' && <IconBtn size={24}>{icon}</IconBtn>}
             {/* If it is not text then show label with first character on Basis of Name of Server */}
             {!icon && (
                 <span className="text-white font-bold  text-lg">
-                    {label.split(' ').map((c) => c[0])}
+                    {label
+                        .split(' ')
+                        .map((c) => c[0])
+                        .slice(0, 3)}
                 </span>
             )}
             {/* If it is Image then then display image */}
