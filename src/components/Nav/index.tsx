@@ -8,11 +8,8 @@ import RenderServerList from './RenderServerList';
 const Navigation = () => {
     const [serverlist, setServerlist] = useState(serverInfo);
     return (
-        <div
-            id="nav"
-            className="w-[72px] bg-[#ffffff02] flex flex-col items-center py-1 h-screen overflow-y-auto"
-        >
-            <nav className="w-full flex flex-col items-center gap-2 py-2">
+        <div id="nav" className="w-[72px] bg-[#ffffff02] flex flex-col items-center h-screen">
+            <nav className="flex flex-col items-center gap-2 py-2 w-[72px]">
                 {/* DiscordIcon */}
                 <NavBtn
                     icon={<DiscordIcon />}
