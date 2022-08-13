@@ -1,7 +1,7 @@
 export interface ServerIn {
     id: string;
     label: string;
-    unread: boolean;
+    unread: false | number;
     type: 'server';
     icon: string | null;
     gif: string | null;
@@ -17,21 +17,21 @@ export interface serverListIn {
 }
 export interface InfoIn extends serverListIn {
     me: {
-        unread: boolean;
+        unread: false | number;
         id: '@me';
     };
 }
 
 export const serverInfo: InfoIn = {
     me: {
-        unread: true,
+        unread: 1,
         id: '@me',
     },
     servers: [
         {
             id: '1',
             label: 'Detaux',
-            unread: true,
+            unread: 2,
             type: 'server',
             icon: '/server-icons/detaux.webp',
             gif: null,
@@ -55,7 +55,7 @@ export const serverInfo: InfoIn = {
         {
             id: '4',
             label: 'MLH',
-            unread: true,
+            unread: 4,
             type: 'server',
             icon: '/server-icons/mlh.webp',
             gif: null,
@@ -67,7 +67,7 @@ export const serverInfo: InfoIn = {
                 {
                     id: '5',
                     label: 'freeCodeCamp',
-                    unread: true,
+                    unread: 2,
                     type: 'server',
                     icon: '/server-icons/freeCodeCamp.webp',
                     gif: null,
@@ -85,15 +85,15 @@ export const serverInfo: InfoIn = {
     ],
 };
 
-interface channelIn {
-    type: string;
+export interface channelIn {
+    type: 'text' | 'voice';
     id: string;
     label: string;
-    unread: boolean;
+    unread: false | number;
 }
-interface folderServerIn {
+export interface folderServerIn {
     id: string;
-    type: 'text' | 'voice' | 'folder';
+    type: 'folder';
     label: string;
     channels: channelIn[];
 }
@@ -114,7 +114,7 @@ export const freeCodeCamp: ServerChannelsIn = {
             type: 'voice',
             id: '1',
             label: 'Total Member: 12',
-            unread: true,
+            unread: 3,
         },
         {
             type: 'folder',
@@ -129,14 +129,20 @@ export const freeCodeCamp: ServerChannelsIn = {
                 },
                 {
                     type: 'text',
-                    id: '1',
+                    id: '2',
                     label: 'leave',
-                    unread: true,
+                    unread: 3,
                 },
                 {
                     type: 'voice',
-                    id: '1',
+                    id: '3',
                     label: 'rules',
+                    unread: false,
+                },
+                {
+                    type: 'text',
+                    id: '4',
+                    label: 'verify',
                     unread: false,
                 },
             ],
