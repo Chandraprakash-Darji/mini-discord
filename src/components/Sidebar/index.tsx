@@ -3,6 +3,7 @@ import { freeCodeCamp, ServerChannelsIn } from '../../data/serverinfo';
 import { useServerIds } from '../../utils/getAllServerIds';
 import DiscordIcon from '../Icons/DiscordIcon';
 import RenderChannel from './RenderChannel';
+import Skelaton from './Skelaton';
 
 interface Props {
     server: string;
@@ -11,76 +12,27 @@ interface Props {
 const SideBar = ({ server, channel }: Props) => {
     const { allServerID } = useServerIds();
     const [serverData, setServerData] = useState<ServerChannelsIn | null>(null);
+    const [showScrollBar, setShowScrollBar] = useState(false);
 
     let isPresent = allServerID.filter((ser) => ser === server).length > 0;
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        // if (!isLoading) setIsLoading(true);
-        // setTimeout(() => {
-        // if (freeCodeCamp.id === server) {
-        setServerData(freeCodeCamp);
-        // setIsLoading(false);
-        // }
-        // }, 0);
+        if (!isLoading) setIsLoading(true);
+        setTimeout(() => {
+            if (freeCodeCamp.id === server) {
+                setServerData(freeCodeCamp);
+                setIsLoading(false);
+            } else {
+                setIsLoading(false);
+                setServerData(null);
+            }
+        }, 0);
     }, [server]);
 
     if ((!server && !channel) || !isPresent)
         return (
             <div id="sidebar" className="h-screen w-60 bg-[#ffffff11] overflow-hidden">
-                <div className="py-5 px-3 flex flex-col gap-4">
-                    <div className="w-20 h-5 bg-white/10 rounded-lg " />
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-20 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-32 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-16 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-36 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-28 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-24 h-5  rounded-lg bg-white/10" />
-                    </div>
-                </div>
-                <div className="py-5 px-3 flex flex-col gap-4">
-                    <div className="w-20 h-5 bg-white/10 rounded-lg " />
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-32 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-28 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-12 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-16 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-24 h-5  rounded-lg bg-white/10" />
-                    </div>
-                    <div className="flex gap-3 pl-3">
-                        <div className="w-5 rounded-full aspect-square bg-white/10" />
-                        <div className="w-20 h-5  rounded-lg bg-white/10" />
-                    </div>
-                </div>
+                <Skelaton />
             </div>
         );
     if (isLoading)
@@ -96,7 +48,11 @@ const SideBar = ({ server, channel }: Props) => {
         return (
             <div
                 id="sidebar"
-                className="h-screen w-60 bg-[#ffffff11] font-bold text-sm overflow-y-auto overflow-x-hidden"
+                className={`h-screen w-60 bg-[#ffffff11] font-bold text-sm ${
+                    showScrollBar ? 'overflow-y-auto' : 'overflow-y-hidden  pr-[0.4rem]'
+                } overflow-x-hidden`}
+                onMouseOver={() => setShowScrollBar(true)}
+                onMouseOut={() => setShowScrollBar(false)}
             >
                 <div className="w-full">
                     <div className="h-14 flex justify-between items-center gap-3 p-3">
@@ -112,7 +68,14 @@ const SideBar = ({ server, channel }: Props) => {
                 </div>
             </div>
         );
-    return <>Something Went Wrong</>;
+    return (
+        <div
+            id="sidebar"
+            className="h-screen w-60 bg-[#ffffff11] font-bold overflow-hidden flex justify-center pt-10"
+        >
+            Something Went Wrong
+        </div>
+    );
 };
 
 export default SideBar;
