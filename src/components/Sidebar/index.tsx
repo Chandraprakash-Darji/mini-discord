@@ -3,6 +3,7 @@ import { freeCodeCamp, ServerChannelsIn } from '../../data/serverinfo';
 import { useServerIds } from '../../utils/getAllServerIds';
 import CeveronDownicon from '../Icons/CeveronDownicon';
 import IconBtn from '../Icons/IconBtn';
+import Loader from './Loader';
 import RenderChannel from './RenderChannel';
 import Skelaton from './Skelaton';
 import UserProfile from './UserProfile';
@@ -21,32 +22,34 @@ const SideBar = ({ server, channel }: Props) => {
         setTimeout(() => {
             if (freeCodeCamp.id === server) {
                 setServerData(freeCodeCamp);
-                setIsLoading(false);
             } else {
-                setIsLoading(false);
                 setServerData(null);
             }
-        }, 0);
+            setIsLoading(false);
+        }, 500);
     }, [server]);
 
     if ((!server && !channel) || !isPresent)
         return (
-            <div id="sidebar" className="h-screen w-60 bg-[#ffffff11] overflow-hidden">
-                <Skelaton />
+            <div id="sidebar" className="h-screen w-60 bg-[#ffffff11] font-bold text-sm">
+                <div className="h-[calc(100vh-52px)] z-0 overflow-hidden">
+                    <Skelaton />
+                </div>
+                <UserProfile />
             </div>
         );
     if (isLoading)
         return (
-            <div className="h-screen w-60 bg-[#ffffff11] aspect-square flex justify-center items-center">
-                <div className="relative">
-                    <div className="w-10 absolute aspect-square border-4 border-bgDark rounded-full left-0 top-0 " />
-                    <div className="animate-spin w-10 aspect-square border-4 border-transparent border-l-white rounded-full" />
+            <div className="h-screen w-60 bg-[#ffffff11] font-bold text-sm ">
+                <div className="relative h-[calc(100vh-52px)] w-full flex justify-center">
+                    <Loader />
                 </div>
+                <UserProfile />
             </div>
         );
     if (serverData)
         return (
-            <div id="sidebar" className="min-h-screen w-60 bg-[#ffffff11] font-bold text-sm ">
+            <div id="sidebar" className="h-screen w-60 bg-[#ffffff11] font-bold text-sm ">
                 <div className="w-full">
                     <div className="h-12 flex justify-between items-center gap-3 p-3">
                         <span className="whitespace-nowrap overflow-hidden overflow-ellipsis ">
@@ -65,11 +68,9 @@ const SideBar = ({ server, channel }: Props) => {
             </div>
         );
     return (
-        <div
-            id="sidebar"
-            className="h-screen w-60 bg-[#ffffff11] font-bold overflow-hidden flex justify-center pt-10"
-        >
-            Something Went Wrong
+        <div id="sidebar" className="h-screen w-60 bg-[#ffffff11] font-bold text-sm ">
+            <div className="h-[calc(100vh-52px)] text-center pt-16 text-lg">Something Went Wrong</div>
+            <UserProfile />
         </div>
     );
 };

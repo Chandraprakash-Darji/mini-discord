@@ -5,7 +5,7 @@ import IconBtn from '../Icons/IconBtn';
 
 const UserProfile = () => {
     return (
-        <div className="h-[52px] flex gap-2 p-2 items-center justify-between bg-black/10">
+        <div className="h-[52px] flex gap-2 p-2 items-center justify-between bg-bgDark">
             <div className="flex gap-2 p-1 items-center justify-between hover:bg-white/10 rounded-lg group ">
                 <figure className="h-8 aspect-square ">
                     <img
