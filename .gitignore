@@ -25,3 +25,5 @@ dist-ssr
 design
 
 .env
+
+example-backend
