@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { ErrorIn } from "../../types";
-import { getAllServersServices, getServerService } from "../services/ServerListServices";
+import { getAllServersDB, getServerDB } from "../database/serverListDatabase";
 
 export const getAllServers = (req: Request, res: Response) => {
     try {
-        res.send({ status: "OK", data: getAllServersServices() });
+        res.send({ status: "OK", data: getAllServersDB() });
     } catch (error) {
         res.status((error as ErrorIn)?.status || 500).send({
             status: "FAILED",
@@ -24,7 +24,7 @@ export const getServer = (req: Request, res: Response) => {
         });
     }
     try {
-        const server = getServerService(serverId);
+        const server = getServerDB(serverId);
         res.send({ status: "OK", data: server });
     } catch (error) {
         res.status((error as ErrorIn)?.status || 500).send({
