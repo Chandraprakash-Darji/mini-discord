@@ -3,7 +3,7 @@ import { freeCodeCamp, ServerChannelsIn } from '../../data/serverinfo';
 import { useServerIds } from '../../utils/getAllServerIds';
 import CeveronDownicon from '../Icons/CeveronDownicon';
 import IconBtn from '../Icons/IconBtn';
-import Loader from './Loader';
+import Loader from '../LogicLeass/Loader';
 import RenderChannel from './RenderChannel';
 import Skelaton from './Skelaton';
 import UserProfile from './UserProfile';
