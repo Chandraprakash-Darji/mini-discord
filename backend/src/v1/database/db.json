@@ -1,0 +1,62 @@
+{
+    "me": {
+        "unread": 1,
+        "id": "@me"
+    },
+    "servers": [
+        {
+            "id": "1",
+            "label": "Detaux",
+            "unread": 2,
+            "type": "server",
+            "icon": "/server-icons/detaux.webp",
+            "gif": null
+        },
+        {
+            "id": "2",
+            "label": "markitUp",
+            "unread": false,
+            "type": "server",
+            "icon": "/server-icons/markitUp.webp",
+            "gif": null
+        },
+        {
+            "id": "3",
+            "label": "Multiverse",
+            "unread": false,
+            "type": "server",
+            "icon": "/server-icons/multiverse.webp",
+            "gif": "/server-icons/multiverse.gif"
+        },
+        {
+            "id": "4",
+            "label": "MLH",
+            "unread": 4,
+            "type": "server",
+            "icon": "/server-icons/mlh.webp",
+            "gif": null
+        },
+        {
+            "type": "folder",
+            "id": "7",
+            "servers": [
+                {
+                    "id": "5",
+                    "label": "freeCodeCamp",
+                    "unread": 2,
+                    "type": "server",
+                    "icon": "/server-icons/freeCodeCamp.webp",
+                    "gif": null
+                },
+                {
+                    "id": "6",
+                    "label": "ZeroToMastery",
+                    "type": "server",
+                    "unread": false,
+                    "icon": null,
+                    "gif": null
+                }
+            ]
+        }
+    ]
+}
