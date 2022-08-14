@@ -20,12 +20,12 @@ export const getServer = (req: Request, res: Response) => {
     if (!serverId) {
         res.status(400).send({
             status: "FAILED",
-            data: { error: "Parameter ':workoutId' can not be empty" },
+            data: { error: "Parameter ':serverId' can not be empty" },
         });
     }
     try {
-        const workout = getServerService(serverId);
-        res.send({ status: "OK", data: workout });
+        const server = getServerService(serverId);
+        res.send({ status: "OK", data: server });
     } catch (error) {
         res.status((error as ErrorIn)?.status || 500).send({
             status: "FAILED",
@@ -33,6 +33,9 @@ export const getServer = (req: Request, res: Response) => {
         });
     }
 };
+
+
+
 export const createServer = (req: Request, res: Response) => {
     res.send("create One servers");
 };

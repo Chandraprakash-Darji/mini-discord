@@ -11,11 +11,13 @@ export const getAllServersDB = () => {
 
 export const getServerDB = (serverId: string) => {
     try {
-        const server = DB.servers.find((server) => server.id === serverId);
+        const server = DB.serverChannels.find(
+            (server) => server.id === serverId
+        );
         if (!server) {
             throw {
                 status: 400,
-                message: `Can't find workout with the id '${serverId}'`,
+                message: `Can't find Server with the id '${serverId}'`,
             };
         }
         return server;
