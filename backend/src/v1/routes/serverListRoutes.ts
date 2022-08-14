@@ -7,10 +7,11 @@ import {
     getServer,
     updateServer,
 } from "../controllers/serverListController";
+import { auth } from "../services/auth";
 
 const router = express.Router();
 
-router.get("/", getAllServers);
+router.get("/", auth, getAllServers);
 
 router.get("/:serverId", getServer);
 
