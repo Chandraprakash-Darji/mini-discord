@@ -13,6 +13,7 @@ function App() {
             console.log(server, channel);
             navigate('/@me');
         }
+        
     }, []);
 
     return (
