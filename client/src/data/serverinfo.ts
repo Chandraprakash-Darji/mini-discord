@@ -1,26 +1,5 @@
-export interface ServerIn {
-    id: string;
-    label: string;
-    unread: false | number;
-    type: 'server';
-    icon: string | null;
-    gif: string | null;
-}
+import { InfoIn, ServerChannelsIn } from "../types";
 
-export interface FolderIn {
-    type: 'folder';
-    id: string;
-    servers: ServerIn[];
-}
-export interface serverListIn {
-    servers: Array<ServerIn | FolderIn>;
-}
-export interface InfoIn extends serverListIn {
-    me: {
-        unread: false | number;
-        id: '@me';
-    };
-}
 
 export const serverInfo: InfoIn = {
     me: {
@@ -85,25 +64,7 @@ export const serverInfo: InfoIn = {
     ],
 };
 
-export interface channelIn {
-    type: 'text' | 'voice';
-    id: string;
-    label: string;
-    unread: false | number;
-}
-export interface folderServerIn {
-    id: string;
-    type: 'folder';
-    label: string;
-    channels: channelIn[];
-}
 
-export interface ServerChannelsIn {
-    id: string;
-    label: string;
-    unread: boolean;
-    channels: Array<channelIn | folderServerIn>;
-}
 
 export const freeCodeCamp: ServerChannelsIn = {
     id: '5',
@@ -260,8 +221,3 @@ export const freeCodeCamp: ServerChannelsIn = {
         },
     ],
 };
-
-export interface SvgProps {
-    size?: number;
-    children: React.ReactNode;
-}
