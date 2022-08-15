@@ -55,54 +55,59 @@ export const registerUser = (req: Request, res: Response) => {
 // login User
 export const loginUser = (req: Request, res: Response) => {
     // Finding the user
-    User.findOne({ email: req.body.email }).then((user) => {
-        // If user doesnt exist then return 404
-        if (!user) {
-            res.status(404).send({
-                message: "User Not found",
-            }); 
-            return;
-        }
-        // If Exist the check for password same
-        bcrypt
-            // Compare password
-            .compare(req.body.password, user.password)
-            .then((passwordCheck) => {
-                // check if password matches
-                if (!passwordCheck) {
-                    return res.status(400).send({
-                        message: "Passwords does not match",
-                    });
-                }
-                //   create JWT token
-                const token = jwt.sign(
-                    {
-                        userId: user._id,
-                        userEmail: user.email,
-                    },
-                    "RANDOM-TOKEN",
-                    { expiresIn: "24h" }
-                );
-                // Return Success Response
-                res.status(200).send({
-                    message: "Login Successful",
-                    email: user.email,
-                    token,
-                });
-            })
-            // If password does not match
-            .catch((error) => {
-                res.status(400).send({
-                    message: "Passwords does not match",
-                    error,
-                });
-            })
-            // Error if email does not exist
-            .catch((e) => {
+    User.findOne({ email: req.body.email })
+        .then((user) => {
+            // If user doesnt exist then return 404
+            if (!user) {
                 res.status(404).send({
-                    message: "Email not found",
-                    e,
+                    status: "NO_USER",
+                    message: "Invalid auth details",
                 });
+                return;
+            }
+            // If Exist the check for password same
+            bcrypt
+                // Compare password
+                .compare(req.body.password, user.password)
+                .then((passwordCheck) => {
+                    // check if password matches
+                    if (!passwordCheck) {
+                        return res.status(400).send({
+                            status: "PASS_NO_MATCH",
+                            message: "Invalid auth details",
+                        });
+                    }
+                    //   create JWT token
+                    const token = jwt.sign(
+                        {
+                            userId: user._id,
+                            userEmail: user.email,
+                        },
+                        "RANDOM-TOKEN",
+                        { expiresIn: "24h" }
+                    );
+                    // Return Success Response
+                    res.status(200).send({
+                        message: "Login Successful",
+                        email: user.email,
+                        token,
+                    });
+                })
+                // If password does not match
+                .catch((error) => {
+                    res.status(400).send({
+                        status: "PASS_NO_MATCH",
+                        message: "Invalid auth details",
+                        error,
+                    });
+                });
+            // Error if email does not exist
+        })
+        .catch((e) => {
+            res.status(404).send({
+                status: "NO_USER",
+                message: "Invalid auth details",
+                e,
             });
-    });
+        });
 };
