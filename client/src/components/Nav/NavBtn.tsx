@@ -78,7 +78,10 @@ const NavBtn = (props: Props) => {
     if (props.id === null) return <Btn {...props} />;
     else
         return (
-            <Link to={`/${props.id}`} className="active:translate-y-[.1rem]">
+            <Link
+                to={`/channels/${props.id}`}
+                className="active:translate-y-[.1rem] transition-all duration-300"
+            >
                 <Btn {...props} />
             </Link>
         );
