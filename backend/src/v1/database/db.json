@@ -71,7 +71,7 @@
                 "unread": 3
             },
             {
-                "type": "folder",
+                "type": "cateogary",
                 "id": "2",
                 "label": "Information",
                 "channels": [
@@ -132,7 +132,7 @@
                 ]
             },
             {
-                "type": "folder",
+                "type": "cateogary",
                 "id": "3",
                 "label": "Events",
                 "channels": [
@@ -151,7 +151,7 @@
                 ]
             },
             {
-                "type": "folder",
+                "type": "cateogary",
                 "id": "4",
                 "label": "main",
                 "channels": [
@@ -182,7 +182,7 @@
                 ]
             },
             {
-                "type": "folder",
+                "type": "cateogary",
                 "id": "5",
                 "label": "Dev discussions",
                 "channels": [

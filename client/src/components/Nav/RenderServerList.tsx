@@ -1,4 +1,4 @@
-import { serverListIn } from '../../data/serverinfo';
+import { serverListIn } from '../../types';
 import NavBtn from './NavBtn';
 
 // Recursive Function

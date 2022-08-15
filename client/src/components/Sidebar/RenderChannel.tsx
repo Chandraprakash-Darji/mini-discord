@@ -1,4 +1,4 @@
-import { channelIn, folderServerIn } from '../../data/serverinfo';
+import { channelIn, folderServerIn } from '../../types';
 import CeveronDownicon from '../Icons/CeveronDownicon';
 import GearIcon from '../Icons/GearIcon';
 import HashIcon from '../Icons/HashIcon';
@@ -57,7 +57,7 @@ const RenderChannel = ({ channels }: Props) => {
                             </div>
                         </div>
                     );
-                if (channel.type === 'folder')
+                if (channel.type === 'cateogary')
                     return (
                         <div
                             key={channel.id}
@@ -74,10 +74,9 @@ const RenderChannel = ({ channels }: Props) => {
                             </span>
                             <div className="pl-2">
                                 <RenderChannel
-                                    channels={channel.channels.sort((prev, now) => {
+                                    channels={channel.channels.slice().sort((prev, now) => {
                                         if (prev.type === 'text') return -1;
-                                        if (prev.type === 'voice') return 1;
-                                        return 0;
+                                        return 1;
                                     })}
                                 />
                             </div>
