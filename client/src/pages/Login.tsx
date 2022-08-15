@@ -5,7 +5,6 @@ import { cookies } from '../components/App';
 import DiscordIcon from '../components/Icons/DiscordIcon';
 import IconBtn from '../components/Icons/IconBtn';
 import Loader from '../components/LogicLeass/Loader';
-import { useLogin } from '../hooks/auth';
 import './Login.css';
 
 const Login = () => {
