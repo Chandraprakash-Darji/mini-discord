@@ -1,37 +1,19 @@
-import { useEffect, useState } from 'react';
 import DiscordIcon from '../Icons/DiscordIcon';
 import PlusIcon from '../Icons/plusIcon';
 import Loader from '../LogicLeass/Loader';
 import NavBtn from './NavBtn';
 import RenderServerList from './RenderServerList';
-import axios from 'axios';
-import { InfoIn } from '../../data/serverinfo';
+import { useGetServersQuery } from '../../services/DcMini';
+
 const Navigation = () => {
-    const [serverlist, setServerlist] = useState<InfoIn | null>(null);
-    const [isLoadinng, setIsLoadinng] = useState(true);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        const getServers = async () => {
-            try {
-                const { data } = await axios.get('http://localhost:3000/api/v1/serverList');
-                console.log(data);
-                setServerlist(data.data);
-                setIsLoadinng(false);
-            } catch (error) {
-                setIsLoadinng(false);
-                setError((error as Error).message);
-            }
-        };
-        getServers();
-    }, []);
-
-    if (isLoadinng)
+    const { data: serverlist, error, isFetching } = useGetServersQuery();
+    if (isFetching)
         return (
             <div id="nav" className="w-[72px] bg-[#ffffff02] flex flex-col items-center h-screen">
                 <Loader />
             </div>
         );
+
     if (serverlist)
         return (
             <div id="nav" className="w-[72px] bg-[#ffffff02] flex flex-col items-center h-screen">
@@ -40,15 +22,15 @@ const Navigation = () => {
                     <NavBtn
                         icon={<DiscordIcon />}
                         label="Home"
-                        unread={serverlist.me.unread}
-                        id={serverlist.me.id}
+                        unread={serverlist?.me.unread}
+                        id={serverlist?.me.id}
                     />
                     {/* Divider */}
                     <hr className="w-8 border-white/25 mx-auto my-1" />
                     {/* Servers */}
-                    <RenderServerList servers={serverlist.servers} />
+                    <RenderServerList servers={serverlist?.servers} />
                     {/* Divider */}
-                    {serverlist.servers.length > 0 && (
+                    {serverlist?.servers.length > 0 && (
                         <hr className="w-8 border-white/25 mx-auto my-1" />
                     )}
                     {/* Create Server */}
@@ -64,7 +46,7 @@ const Navigation = () => {
         );
     return (
         <div id="nav" className="w-[72px] bg-[#ffffff02] flex flex-col items-center h-screen">
-            {error}
+            {error && <div>Error</div>}
         </div>
     );
 };
