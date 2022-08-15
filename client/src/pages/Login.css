@@ -1,0 +1,39 @@
+.inputLabel {
+    @apply absolute -top-2 ml-2 font-medium text-gray-300 z-10 transition-all duration-300 flex;
+}
+
+.inputLabel span {
+    @apply block translate-y-10 transition-all duration-300;
+}
+
+#emailInputBox:not(:placeholder-shown) + .emailLabel span {
+    @apply translate-y-0;
+}
+
+#emailInputBox:not(:placeholder-shown) + .emailLabel {
+    @apply ml-0;
+}
+
+#emailInputBox:focus + .emailLabel span {
+    @apply translate-y-0;
+}
+
+#emailInputBox:focus + .emailLabel {
+    @apply ml-0;
+}
+
+#passwordInputBox:not(:placeholder-shown) + .passwordLabel span {
+    @apply translate-y-0;
+}
+
+#passwordInputBox:not(:placeholder-shown) + .passwordLabel {
+    @apply ml-0;
+}
+
+#passwordInputBox:focus + .passwordLabel span {
+    @apply translate-y-0;
+}
+
+#passwordInputBox:focus + .passwordLabel {
+    @apply ml-0;
+}
