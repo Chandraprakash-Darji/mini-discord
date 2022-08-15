@@ -4,29 +4,24 @@ import express, { Express } from "express";
 import v1Router from "./v1/routes/serverListRoutes";
 import dbConnect from "./v1/database/dbConnect";
 import authRouter from "./v1/routes/authRoute";
-
+import cors from "cors";
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
 
-// execute database connection
-dbConnect();
 // Intialize App
 const app: Express = express();
 const PORT = process.env.PORT || "3000";
 
-// Curb Cores Error by adding a header here
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-    );
-    next();
-});
+// execute database connection
+dbConnect();
+
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
 
 // Setup BodyParser to parse JSON
 app.use(BodyParser.json());
