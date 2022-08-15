@@ -1,5 +1,4 @@
-import { InfoIn, ServerChannelsIn } from "../types";
-
+import { InfoIn, ServerChannelsIn } from '../types';
 
 export const serverInfo: InfoIn = {
     me: {
@@ -64,8 +63,6 @@ export const serverInfo: InfoIn = {
     ],
 };
 
-
-
 export const freeCodeCamp: ServerChannelsIn = {
     id: '5',
     label: 'freeCodeCamp',
@@ -78,7 +75,7 @@ export const freeCodeCamp: ServerChannelsIn = {
             unread: 3,
         },
         {
-            type: 'folder',
+            type: 'cateogary',
             id: '2',
             label: 'Information',
             channels: [
@@ -139,7 +136,7 @@ export const freeCodeCamp: ServerChannelsIn = {
             ],
         },
         {
-            type: 'folder',
+            type: 'cateogary',
             id: '3',
             label: 'Events',
             channels: [
@@ -158,7 +155,7 @@ export const freeCodeCamp: ServerChannelsIn = {
             ],
         },
         {
-            type: 'folder',
+            type: 'cateogary',
             id: '4',
             label: 'main',
             channels: [
@@ -189,7 +186,7 @@ export const freeCodeCamp: ServerChannelsIn = {
             ],
         },
         {
-            type: 'folder',
+            type: 'cateogary',
             id: '5',
             label: 'Dev discussions',
             channels: [

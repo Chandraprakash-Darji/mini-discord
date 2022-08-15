@@ -1,4 +1,4 @@
-import { SvgProps } from '../../data/serverinfo';
+import { SvgProps } from "../../types";
 
 const IconBtn = ({ size, children }: SvgProps) => {
     const sizeIcon = size ? size : 24;

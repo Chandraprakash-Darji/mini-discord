@@ -1,4 +1,5 @@
-import { serverInfo, serverListIn } from '../data/serverinfo';
+import { serverInfo } from '../data/serverinfo';
+import { serverListIn } from '../types';
 
 export const useServerIds = () => {
     const getAllServerIds = ({ servers }: serverListIn): string[] => {
