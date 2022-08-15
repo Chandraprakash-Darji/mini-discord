@@ -20,21 +20,19 @@ export const getServer = (req: Request, res: Response) => {
     if (!serverId) {
         res.status(400).send({
             status: "FAILED",
-            data: { error: "Parameter ':serverId' can not be empty" },
+            error: "Parameter ':serverId' can not be empty",
         });
     }
     try {
         const server = getServerDB(serverId);
         res.send({ status: "OK", data: server });
     } catch (error) {
-        res.status((error as ErrorIn)?.status || 500).send({
+        res.status(404).send({
             status: "FAILED",
-            data: { error: error instanceof Error ? error?.message : error },
+            message: (error as Error).message,
         });
     }
 };
-
-
 
 export const createServer = (req: Request, res: Response) => {
     res.send("create One servers");
