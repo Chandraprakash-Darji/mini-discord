@@ -1,19 +1,58 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 
-const channelSchema = new Schema({
-    name: String,
-    type: String, // voice | text
-    createdAt: String,
+// For Channel
+interface channelIn {
+    _id: Types.ObjectId;
+    name: string;
+    typo: "voice" | "text";
+}
+
+const channelSchema = new Schema<channelIn>({
+    name: {
+        type: String,
+        required: true,
+    },
+    typo: {
+        type: String,
+        enum: ["voice", "text"],
+        required: true,
+    },
 });
 
-const cateogarySchema = new Schema({
-    name: String,
-    type: String, // cateogary
+// For Category
+interface categoryIn {
+    _id: Types.ObjectId;
+    name: string;
+    typo: "cateogary";
+    channels: channelIn[];
+}
+
+const cateogarySchema = new Schema<categoryIn>({
+    name: {
+        type: String,
+        required: true,
+    },
+    typo: {
+        type: String,
+        default: "cateogary",
+    },
     channels: [channelSchema],
-    createdAt: String,
 });
 
-const ServerSchema = new Schema({
+// For Server
+interface ServerIn {
+    _id: Types.ObjectId;
+    admin: string;
+    name: string;
+    icon: string;
+    gif: string;
+    channels: Types.DocumentArray<channelIn>;
+    category: Types.DocumentArray<categoryIn>;
+    members: string[];
+    createdAt: string;
+}
+
+const ServerSchema = new Schema<ServerIn>({
     admin: {
         type: String,
         required: true,
@@ -24,12 +63,12 @@ const ServerSchema = new Schema({
         type: String,
         required: true,
     },
-    // channels: [channelSchema],
-    // cateogary: [cateogarySchema],
+    channels: [channelSchema],
+    category: [cateogarySchema],
     members: [String],
     createdAt: {
         type: String,
-        required: true,
+        default: new Date().toISOString(),
     },
 });
 const serverModal = model("Server", ServerSchema);
