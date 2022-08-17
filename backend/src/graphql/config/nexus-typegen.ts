@@ -28,7 +28,28 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  AuthPayload: { // root type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Mutation: {};
   Query: {};
+  Server: { // root type
+    admin: string; // String!
+    createdAt: string; // String!
+    gif?: string | null; // String
+    icon?: string | null; // String
+    id: string; // String!
+    name: string; // String!
+  }
+  User: { // root type
+    createdAt: string; // String!
+    id: string; // String!
+    online: boolean; // Boolean!
+    password: string; // String!
+    profileUrl?: string | null; // String
+    username: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -42,18 +63,97 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  AuthPayload: { // field return type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Mutation: { // field return type
+    addServer: NexusGenRootTypes['Server']; // Server!
+    delServer: boolean; // Boolean!
+    login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+    signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+  }
   Query: { // field return type
     ok: boolean; // Boolean!
+  }
+  Server: { // field return type
+    admin: string; // String!
+    createdAt: string; // String!
+    gif: string | null; // String
+    icon: string | null; // String
+    id: string; // String!
+    members: NexusGenRootTypes['User'][]; // [User!]!
+    name: string; // String!
+  }
+  User: { // field return type
+    c_servers: NexusGenRootTypes['Server'][]; // [Server!]!
+    createdAt: string; // String!
+    id: string; // String!
+    j_servers: NexusGenRootTypes['Server'][]; // [Server!]!
+    online: boolean; // Boolean!
+    password: string; // String!
+    profileUrl: string | null; // String
+    username: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  AuthPayload: { // field return type name
+    token: 'String'
+    user: 'User'
+  }
+  Mutation: { // field return type name
+    addServer: 'Server'
+    delServer: 'Boolean'
+    login: 'AuthPayload'
+    signup: 'AuthPayload'
+  }
   Query: { // field return type name
     ok: 'Boolean'
+  }
+  Server: { // field return type name
+    admin: 'String'
+    createdAt: 'String'
+    gif: 'String'
+    icon: 'String'
+    id: 'String'
+    members: 'User'
+    name: 'String'
+  }
+  User: { // field return type name
+    c_servers: 'Server'
+    createdAt: 'String'
+    id: 'String'
+    j_servers: 'Server'
+    online: 'Boolean'
+    password: 'String'
+    profileUrl: 'String'
+    username: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    addServer: { // args
+      gif?: string | null; // String
+      icon?: string | null; // String
+      name: string; // String!
+      userId: string; // String!
+    }
+    delServer: { // args
+      serverId: string; // String!
+      userId: string; // String!
+    }
+    login: { // args
+      password: string; // String!
+      username: string; // String!
+    }
+    signup: { // args
+      password: string; // String!
+      profileUrl?: string | null; // String
+      username: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

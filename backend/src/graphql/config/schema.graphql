@@ -2,6 +2,39 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Mutation {
+  addServer(gif: String, icon: String, name: String!, userId: String!): Server!
+  delServer(serverId: String!, userId: String!): Boolean!
+  login(password: String!, username: String!): AuthPayload!
+  signup(password: String!, profileUrl: String, username: String!): AuthPayload!
+}
+
 type Query {
   ok: Boolean!
+}
+
+type Server {
+  admin: String!
+  createdAt: String!
+  gif: String
+  icon: String
+  id: String!
+  members: [User!]!
+  name: String!
+}
+
+type User {
+  c_servers: [Server!]!
+  createdAt: String!
+  id: String!
+  j_servers: [Server!]!
+  online: Boolean!
+  password: String!
+  profileUrl: String
+  username: String!
 }
