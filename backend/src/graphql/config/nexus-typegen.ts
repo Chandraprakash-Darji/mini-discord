@@ -32,19 +32,31 @@ export interface NexusGenObjects {
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  Category: { // root type
+    _id: string; // String!
+    channels: NexusGenRootTypes['Channels'][]; // [Channels!]!
+    name: string; // String!
+  }
+  Channels: { // root type
+    _id: string; // String!
+    name: string; // String!
+    typo: string; // String!
+  }
   Mutation: {};
   Query: {};
   Server: { // root type
+    _id: string; // String!
     admin: string; // String!
+    category: NexusGenRootTypes['Category'][]; // [Category!]!
+    channels: NexusGenRootTypes['Channels'][]; // [Channels!]!
     createdAt: string; // String!
     gif?: string | null; // String
     icon?: string | null; // String
-    id: string; // String!
     name: string; // String!
   }
   User: { // root type
+    _id: string; // String!
     createdAt: string; // String!
-    id: string; // String!
     online: boolean; // Boolean!
     password: string; // String!
     profileUrl?: string | null; // String
@@ -67,7 +79,18 @@ export interface NexusGenFieldTypes {
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  Category: { // field return type
+    _id: string; // String!
+    channels: NexusGenRootTypes['Channels'][]; // [Channels!]!
+    name: string; // String!
+  }
+  Channels: { // field return type
+    _id: string; // String!
+    name: string; // String!
+    typo: string; // String!
+  }
   Mutation: { // field return type
+    addChannel: NexusGenRootTypes['Server']; // Server!
     addServer: NexusGenRootTypes['Server']; // Server!
     delServer: boolean; // Boolean!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
@@ -77,22 +100,23 @@ export interface NexusGenFieldTypes {
     ok: boolean; // Boolean!
   }
   Server: { // field return type
+    _id: string; // String!
     admin: string; // String!
+    category: NexusGenRootTypes['Category'][]; // [Category!]!
+    channels: NexusGenRootTypes['Channels'][]; // [Channels!]!
     createdAt: string; // String!
     gif: string | null; // String
     icon: string | null; // String
-    id: string; // String!
     members: NexusGenRootTypes['User'][]; // [User!]!
     name: string; // String!
   }
   User: { // field return type
-    c_servers: NexusGenRootTypes['Server'][]; // [Server!]!
+    _id: string; // String!
     createdAt: string; // String!
-    id: string; // String!
-    j_servers: NexusGenRootTypes['Server'][]; // [Server!]!
     online: boolean; // Boolean!
     password: string; // String!
     profileUrl: string | null; // String
+    servers: NexusGenRootTypes['Server'][]; // [Server!]!
     username: string; // String!
   }
 }
@@ -102,7 +126,18 @@ export interface NexusGenFieldTypeNames {
     token: 'String'
     user: 'User'
   }
+  Category: { // field return type name
+    _id: 'String'
+    channels: 'Channels'
+    name: 'String'
+  }
+  Channels: { // field return type name
+    _id: 'String'
+    name: 'String'
+    typo: 'String'
+  }
   Mutation: { // field return type name
+    addChannel: 'Server'
     addServer: 'Server'
     delServer: 'Boolean'
     login: 'AuthPayload'
@@ -112,37 +147,42 @@ export interface NexusGenFieldTypeNames {
     ok: 'Boolean'
   }
   Server: { // field return type name
+    _id: 'String'
     admin: 'String'
+    category: 'Category'
+    channels: 'Channels'
     createdAt: 'String'
     gif: 'String'
     icon: 'String'
-    id: 'String'
     members: 'User'
     name: 'String'
   }
   User: { // field return type name
-    c_servers: 'Server'
+    _id: 'String'
     createdAt: 'String'
-    id: 'String'
-    j_servers: 'Server'
     online: 'Boolean'
     password: 'String'
     profileUrl: 'String'
+    servers: 'Server'
     username: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
+    addChannel: { // args
+      categoryId?: string | null; // String
+      name: string; // String!
+      serverId: string; // String!
+      typo: string; // String!
+    }
     addServer: { // args
       gif?: string | null; // String
       icon?: string | null; // String
       name: string; // String!
-      userId: string; // String!
     }
     delServer: { // args
       serverId: string; // String!
-      userId: string; // String!
     }
     login: { // args
       password: string; // String!

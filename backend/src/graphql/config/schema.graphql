@@ -7,9 +7,22 @@ type AuthPayload {
   user: User!
 }
 
+type Category {
+  _id: String!
+  channels: [Channels!]!
+  name: String!
+}
+
+type Channels {
+  _id: String!
+  name: String!
+  typo: String!
+}
+
 type Mutation {
-  addServer(gif: String, icon: String, name: String!, userId: String!): Server!
-  delServer(serverId: String!, userId: String!): Boolean!
+  addChannel(categoryId: String, name: String!, serverId: String!, typo: String!): Server!
+  addServer(gif: String, icon: String, name: String!): Server!
+  delServer(serverId: String!): Boolean!
   login(password: String!, username: String!): AuthPayload!
   signup(password: String!, profileUrl: String, username: String!): AuthPayload!
 }
@@ -19,22 +32,23 @@ type Query {
 }
 
 type Server {
+  _id: String!
   admin: String!
+  category: [Category!]!
+  channels: [Channels!]!
   createdAt: String!
   gif: String
   icon: String
-  id: String!
   members: [User!]!
   name: String!
 }
 
 type User {
-  c_servers: [Server!]!
+  _id: String!
   createdAt: String!
-  id: String!
-  j_servers: [Server!]!
   online: Boolean!
   password: String!
   profileUrl: String
+  servers: [Server!]!
   username: String!
 }
