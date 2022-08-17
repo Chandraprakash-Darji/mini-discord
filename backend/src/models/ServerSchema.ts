@@ -15,16 +15,22 @@ const cateogarySchema = new Schema({
 
 const ServerSchema = new Schema({
     admin: {
-        type: Schema.Types.ObjectId,
-        ref: "users",
+        type: String,
+        required: true,
     },
     icon: String,
     gif: String,
-    name: String,
-    channels: [channelSchema],
-    cateogary: [cateogarySchema],
+    name: {
+        type: String,
+        required: true,
+    },
+    // channels: [channelSchema],
+    // cateogary: [cateogarySchema],
     members: [String],
-    createdAt: String,
+    createdAt: {
+        type: String,
+        required: true,
+    },
 });
-
-export default model("Server", ServerSchema);
+const serverModal = model("Server", ServerSchema);
+export default serverModal;
