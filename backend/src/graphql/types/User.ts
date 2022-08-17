@@ -6,53 +6,30 @@ import userModal from "../../models/UserSchema";
 export const User = objectType({
     name: "User",
     definition(t) {
-        t.nonNull.string("id");
+        t.nonNull.string("_id");
         t.nonNull.string("username");
         t.string("profileUrl");
         t.nonNull.string("createdAt");
         t.nonNull.string("password");
         t.nonNull.boolean("online");
-        t.nonNull.list.nonNull.field("j_servers", {
+        t.nonNull.list.nonNull.field("servers", {
             type: "Server",
             async resolve(parent) {
-                const user = await userModal.findById(parent.id);
+                const user = await userModal.findById(parent._id);
 
                 if (!user) throw new Error("User not found");
 
-                const servers = await serverModal
-                    .find({
-                        _id: {
-                            $in: user.j_servers.map(
-                                (server) => new Types.ObjectId(server)
-                            ),
-                        },
-                    })
-                    .lean();
-                return servers.map((s) => ({
-                    ...s,
-                    id: s._id.toString(),
-                }));
-            },
-        });
-        t.nonNull.list.nonNull.field("c_servers", {
-            type: "Server",
-            async resolve(parent) {
-                const user = await userModal.findById(parent.id);
+                const servers = await serverModal.find({
+                    _id: {
+                        $in: user.servers.map(
+                            (server) => new Types.ObjectId(server.id)
+                        ),
+                    },
+                });
 
-                if (!user) throw new Error("User not found");
-
-                const servers = await serverModal
-                    .find({
-                        _id: {
-                            $in: user.c_servers.map(
-                                (server) => new Types.ObjectId(server)
-                            ),
-                        },
-                    })
-                    .lean();
                 return servers.map((s) => ({
-                    ...s,
-                    id: s._id.toString(),
+                    ...s.toObject(),
+                    _id: s._id.toString(),
                 }));
             },
         });
