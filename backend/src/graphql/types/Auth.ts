@@ -39,7 +39,6 @@ export const AuthMutation = extendType({
                     username,
                     profileUrl: profileUrl || "",
                     password: hashPassword,
-                    createdAt: new Date().toISOString(),
                     online: true,
                 });
 
