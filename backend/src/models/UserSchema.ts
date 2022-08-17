@@ -1,6 +1,21 @@
 import { model, Schema } from "mongoose";
 
-const UserSchema = new Schema({
+// User interface
+interface UserIn {
+    username: string;
+    password: string;
+    profileUrl?: string;
+    createdAt: string;
+    servers: [
+        {
+            id: string;
+            mode: string;
+        }
+    ];
+    online: boolean;
+}
+
+const UserSchema = new Schema<UserIn>({
     username: {
         type: String,
         unique: true,
@@ -15,10 +30,20 @@ const UserSchema = new Schema({
     profileUrl: String,
     createdAt: {
         type: String,
-        required: true,
+        default: new Date().toISOString(),
     },
-    j_servers: [String],
-    c_servers: [String],
+    servers: [
+        {
+            id: {
+                type: String,
+                required: true,
+            },
+            mode: {
+                type: String,
+                required: true,
+            },
+        },
+    ],
     online: {
         type: Boolean,
         required: true,
