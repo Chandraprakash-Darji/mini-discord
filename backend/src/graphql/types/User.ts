@@ -9,7 +9,7 @@ export const User = objectType({
         t.nonNull.string("_id");
         t.nonNull.string("username");
         t.string("profileUrl");
-        t.nonNull.string("createdAt");
+        t.nonNull.dateTime("createdAt");
         t.nonNull.string("password");
         t.nonNull.boolean("online");
         t.nonNull.list.nonNull.field("servers", {
