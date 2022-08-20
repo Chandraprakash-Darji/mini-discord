@@ -1,12 +1,7 @@
-import { model, Schema, Types } from "mongoose";
+import { model, Schema } from "mongoose";
+import { categoryIn, channelIn, ServerIn } from "../types";
 
-// For Channel
-interface channelIn {
-    _id: Types.ObjectId;
-    name: string;
-    typo: "voice" | "text";
-}
-
+//* For channel
 const channelSchema = new Schema<channelIn>({
     name: {
         type: String,
@@ -19,14 +14,7 @@ const channelSchema = new Schema<channelIn>({
     },
 });
 
-// For Category
-interface categoryIn {
-    _id: Types.ObjectId;
-    name: string;
-    typo: "cateogary";
-    channels: channelIn[];
-}
-
+//* For Category
 const cateogarySchema = new Schema<categoryIn>({
     name: {
         type: String,
@@ -39,19 +27,7 @@ const cateogarySchema = new Schema<categoryIn>({
     channels: [channelSchema],
 });
 
-// For Server
-interface ServerIn {
-    _id: Types.ObjectId;
-    admin: string;
-    name: string;
-    icon: string;
-    gif: string;
-    channels: Types.DocumentArray<channelIn>;
-    category: Types.DocumentArray<categoryIn>;
-    members: string[];
-    createdAt: string;
-}
-
+//* For Server
 const ServerSchema = new Schema<ServerIn>({
     admin: {
         type: String,

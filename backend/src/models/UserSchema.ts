@@ -1,19 +1,5 @@
 import { model, Schema } from "mongoose";
-
-// User interface
-interface UserIn {
-    username: string;
-    password: string;
-    profileUrl?: string;
-    createdAt: string;
-    servers: [
-        {
-            id: string;
-            mode: string;
-        }
-    ];
-    online: boolean;
-}
+import { UserIn } from "../types";
 
 const UserSchema = new Schema<UserIn>({
     username: {
