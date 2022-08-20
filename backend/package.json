@@ -6,7 +6,8 @@
     "scripts": {
         "build": "npx tsc",
         "dev": "ts-node-dev --transpile-only --no-notify --exit-child src/index.ts",
-        "generate": "ts-node --transpile-only src/schema.ts"
+        "generate": "ts-node --transpile-only src/schema.ts",
+        "start": "node dist/src/index.js"
     },
     "keywords": [
         "MERN",
@@ -25,6 +26,7 @@
     "dependencies": {
         "bcrypt": "^5.0.1",
         "dotenv": "^16.0.1",
+        "graphql-scalars": "^1.18.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.5.2",
         "nexus": "^1.3.0",
