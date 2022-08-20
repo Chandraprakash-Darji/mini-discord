@@ -19,6 +19,11 @@ type Channels {
   typo: String!
 }
 
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
 type Mutation {
   addChannel(categoryId: String, name: String!, serverId: String!, typo: String!): Server!
   addServer(gif: String, icon: String, name: String!): Server!
@@ -36,7 +41,7 @@ type Server {
   admin: String!
   category: [Category!]!
   channels: [Channels!]!
-  createdAt: String!
+  createdAt: DateTime!
   gif: String
   icon: String
   members: [User!]!
@@ -45,7 +50,7 @@ type Server {
 
 type User {
   _id: String!
-  createdAt: String!
+  createdAt: DateTime!
   online: Boolean!
   password: String!
   profileUrl: String

@@ -11,7 +11,7 @@ export const Server = objectType({
         t.string("icon");
         t.string("gif");
         t.nonNull.string("name");
-        t.nonNull.string("createdAt");
+        t.nonNull.dateTime("createdAt");
         t.nonNull.list.nonNull.field("channels", {
             type: "Channels",
         });
