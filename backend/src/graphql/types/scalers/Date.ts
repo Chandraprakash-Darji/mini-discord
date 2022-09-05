@@ -1,4 +1,4 @@
 import { asNexusMethod } from "nexus";
-import { GraphQLDateTime } from "graphql-scalars"; // 1
+import { GraphQLDateTime } from "graphql-scalars";
 
-export const GQLDate = asNexusMethod(GraphQLDateTime, "dateTime");  // 2
+export const GQLDate = asNexusMethod(GraphQLDateTime, "dateTime");  

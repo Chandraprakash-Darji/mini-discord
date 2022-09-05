@@ -1,4 +1,4 @@
-import { enumType, extendType, nonNull, objectType, stringArg } from "nexus";
+import { extendType, nonNull, objectType, stringArg } from "nexus";
 import serverModal from "../../models/ServerSchema";
 
 // For Channel

@@ -11,7 +11,7 @@ export const DcMini = createApi({
         prepareHeaders: (headers) => {
             const token = cookies.get('TOKEN');
 
-            // If we have a token set in state, let's assume that we should be passing it.
+            //* If we have a token set in state, let's assume that we should be passing it.
             if (token) {
                 headers.set('authorization', `Bearer ${token}`);
             }
